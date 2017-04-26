@@ -19,13 +19,14 @@ def find_method(about)
 	which_question(about)
 	puts "Search manually? (Yes/No)"
 	input = gets.chomp.downcase
-	key = list_key(about)
+	keys = list_key(about)
+	key = keys.first
 	if input == "yes"
-		gets.chomp.downcase  #get name, able to call for info
-		binding.pry
+		name = gets.chomp.downcase 
 	else
-		page_iterator(about, key).downcase	#still need get name
+		name = page_iterator(about, key).downcase
 	end	
+	c = more_info(keys,name)
 end
 
 def get_info_from_user(name)

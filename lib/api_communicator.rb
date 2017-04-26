@@ -61,11 +61,20 @@ end
 
 def list_key(about)
   list_hash = parse_json(URL+"#{about}/")
-  list_hash['results'][0].keys.first
+  list_hash['results'][0].keys
 end
 
 def lister(hash, key)
    hash["results"].each.with_index(1) do |arr,index|
       puts "#{index}. #{arr[key]}"
    end
+end
+
+def more_info(keys,name)
+  puts "Here's what we found:"
+  keys.each.with_index(1) do |key,index|
+    puts "#{index}. #{key.capitalize}"
+  end
+  puts "What about #{name.split(" ").collect { |w| w.capitalize}.join(" ")} would you like to know more about?"  
+  gets.chomp
 end
