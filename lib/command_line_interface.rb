@@ -1,3 +1,5 @@
+require_relative './api_communicator.rb'
+
 def welcome
   puts "Welcome to the Star Wars API data comber."
 end
@@ -11,6 +13,19 @@ def get_about_from_user
   	input = gets.chomp.to_i
   end
   define_topic(input)
+end
+
+def find_method(about)
+	which_question(about)
+	puts "Search manually? (Yes/No)"
+	input = gets.chomp.downcase
+	key = list_key(about)
+	if input == "yes"
+		gets.chomp.downcase  #get name, able to call for info
+		binding.pry
+	else
+		page_iterator(about, key).downcase	#still need get name
+	end	
 end
 
 def get_info_from_user(name)
