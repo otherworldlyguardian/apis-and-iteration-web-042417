@@ -3,11 +3,11 @@ def welcome
 end
 
 def get_about_from_user
-  puts "What do you want to know more about?(1-4)"
+  puts "What do you want to know more about?(1-6)"
   info_list
   input = gets.chomp.to_i
-  until input >= 1 && input <= 4
-  	puts "Please input a valid number (1-4)."
+  until input >= 1 && input <= 6
+  	puts "Please input a valid number (1-6)."
   	input = gets.chomp.to_i
   end
   define_topic(input)
@@ -21,23 +21,38 @@ def get_info_from_user(name)
   	puts "Please input a valid number (1-4)."
   	input = gets.chomp.to_i
   end
-  define_topic(input)
+  if input == 1
+  	"characters"
+  else
+  	define_topic(input) #stored in variable 'about'
+  end
 end
 
-def get_title_from_user(about)
-	if about == "people"
-		puts "Which person?"
-	else
-		puts "Which #{about}?"
+#----------Helper Methods-------------
+def which_question(about)
+	case about
+		when "people"
+			puts "Which person?"
+		when "planets"
+			puts "Which planet?"
+		when "films"
+			puts "Which film?"
+		when "species"
+			puts "Which species?"
+		when "vehicles"
+			puts "Which vehicle?"
+		when "starships"
+			puts "Which starship?"
 	end
-	gets.chomp
 end
 
 def info_list
 	puts "1. People"
-	puts "2. Films"
-	puts "3. Vehicles"
-	puts "4. Starships"
+	puts "2. Planets"
+	puts "3. Films"
+	puts "4. Species"
+	puts "5. Vehicles"
+	puts "6. Starships"
 end
 
 def define_topic(input)
@@ -45,10 +60,14 @@ def define_topic(input)
 		when 1
 			"people" 
 		when 2
-			"films" 
+			"planets" 
 		when 3
-			"vehicles"
+			"films"
 		when 4
+			"species"
+		when 5
+			"vehicles"
+		when 6
 			"starships"
 	end
 end
